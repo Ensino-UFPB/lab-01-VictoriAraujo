@@ -1,1 +1,321 @@
 Coloque aqui todas as respostas das práticas indicadas no README.md
+
+Questão 1.
+
+PS C:\Users\maria.marcelino\Desktop\Lab\lab-01-VictoriAraujo> docker exec -it lab01 bash
+root@64d3a660d6ec:/# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         172.18.0.1      0.0.0.0         UG    0      0        0 eth0
+172.18.0.0      0.0.0.0         255.255.0.0     U     0      0        0 eth0
+
+
+Qual a sua rede e máscara?
+172.18.0.0 / 255.255.0.0
+
+Qual o seu roteador padrão (default gateway)?
+172.18.0.1
+
+Quantas rotas configuradas tem seu computador?
+2
+
+Questão 2.
+
+root@64d3a660d6ec:/# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+8: eth0@if9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 02:42:ac:12:00:02 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 172.18.0.2/16 brd 172.18.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+
+Utilize o comando ip a para verificar as questões abaixo:
+
+Qual o IP da interface de rede?
+172.18.0.2/16
+
+Qual a rede e a máscara?
+172.18.0.0 / 255.255.0.0
+
+Qual o nome da interface de rede principal?
+eth0
+
+Questão 3.
+
+root@64d3a660d6ec:/# nslookup www.google.com
+Server:         127.0.0.11
+Address:        127.0.0.11#53
+
+Non-authoritative answer:
+Name:   www.google.com
+Address: 172.217.30.36
+Name:   www.google.com
+Address: 2800:3f0:4001:844::2004
+
+Prática
+Descubra o endereço IP dos seguintes domínios e informe no arquivo de respostas:
+
+www.google.com
+Qual o servidor DNS utilizado?
+127.0.0.11
+
+Qual o endereço IPv4 do www.google.com?
+172.217.30.36
+
+Qual o endereço IPv6 do www.google.com?
+2800:3f0:4001:844::2004
+
+www.whitehouse.gov
+
+root@64d3a660d6ec:/# nslookup www.whitehouse.gov
+Server:         127.0.0.11
+Address:        127.0.0.11#53
+
+Non-authoritative answer:
+www.whitehouse.gov      canonical name = wh47.go-vip.net.
+Name:   wh47.go-vip.net
+Address: 192.0.66.51
+Name:   wh47.go-vip.net
+Address: 2a04:fa87:fffd::c000:4233
+
+Qual o servidor DNS utilizado?
+127.0.0.11
+
+Qual o endereço IPv4 do www.whitehouse.gov?
+192.0.66.51
+
+Qual o endereço IPv6 do www.whitehouse.gov?
+2a04:fa87:fffd::c000:4233
+
+
+www.rnp.br
+
+root@64d3a660d6ec:/# nslookup www.rnp.br
+Server:         127.0.0.11
+Address:        127.0.0.11#53
+
+Non-authoritative answer:
+Name:   www.rnp.br
+Address: 104.18.27.22
+Name:   www.rnp.br
+Address: 104.18.26.22
+Name:   www.rnp.br
+Address: 2606:4700::6812:1a16
+Name:   www.rnp.br
+Address: 2606:4700::6812:1b16
+
+Qual o servidor DNS utilizado?
+127.0.0.11
+
+Qual o endereço IPv4 do www.rnp.br?
+104.18.27.22, 104.18.26.22
+
+Qual o endereço IPv6 do www.rnp.br?
+2606:4700::6812:1a16, 2606:4700::6812:1b16
+
+nslookup www.ufpb.br
+
+root@64d3a660d6ec:/# nslookup www.ufpb.br
+Server:         127.0.0.11
+Address:        127.0.0.11#53
+
+Non-authoritative answer:
+www.ufpb.br     canonical name = nginx.bbn.ufpb.br.
+Name:   nginx.bbn.ufpb.br
+Address: 150.165.254.52
+
+www.ufpb.br
+
+Qual o servidor DNS utilizado?
+127.0.0.11
+
+Qual o nome canônico do www.ufpb.br?
+nginx.bbn.ufpb.br
+
+Qual o endereço IPv4 do www.ufpb.br?
+150.165.254.52
+
+Questao 4
+
+1   Ping para 127.0.0.1: Tempo de resposta entre 0.032 ms e 0.106 ms.
+    Ping para o IP do container (172.18.0.2): O tempo de resposta seria semelhante, geralmente baixo, entre 0.1 ms e 1 m
+
+2. Teste a conectividade com a Internet:
+
+Quais os tempos de resposta para cada um dos sites. Algum estava inacessível, qual mensagem apareceu?
+
+Ping www.ufpb.br:
+
+Mínimo: 24.832 ms
+
+Médio: 26.594 ms
+
+Máximo: 39.588 ms
+
+Perda de pacotes: 0%
+
+Ping www.yahoo.com:
+
+Mínimo: 169.451 ms
+
+Médio: 169.802 ms
+
+Máximo: 170.508 ms
+
+Perda de pacotes: 0%
+
+Ping www.brasil.gov.br:
+
+Mínimo: 76.620 ms
+
+Médio: 77.174 ms
+
+Máximo: 78.082 ms
+
+Perda de pacotes: 0%
+
+Ping www.dce.ufpb.br:
+
+Apareceu a mensagem "unknown host"
+
+3. Análise de tempos de resposta:
+
+Ping www.google.com:
+
+Mínimo: 58.063 ms
+
+Médio: 58.452 ms
+
+Máximo: 59.109 ms
+
+Perda de pacotes: 0%
+
+Ping www.rnp.br:
+
+Mínimo: 58.481 ms
+
+Médio: 58.930 ms
+
+Máximo: 59.539 ms
+
+Perda de pacotes: 0%
+
+Ping www.whitehouse.gov:
+
+Mínimo: 58.391 ms
+
+Médio: 58.602 ms
+
+Máximo: 58.846 ms
+
+Perda de pacotes: 0%
+
+O que pode influenciar as diferenças nos tempos?
+Fatores como localização dos servidores, congestionamento de rede, latência e roteamento influenciam os tempos de resposta.
+
+Questão 5. 
+
+Traceroute www.google.com:
+
+Primeiro salto: 172.18.0.1
+
+Demais saltos: sem resposta (* * *)
+
+Traceroute www.rnp.br:
+
+Primeiro salto: 172.18.0.1
+
+Demais saltos: sem resposta (* * *)
+
+Traceroute www.whitehouse.gov:
+
+Primeiro salto: 172.18.0.1
+
+Demais saltos: sem resposta (* * *)
+
+Por que alguns roteadores ao longo do caminho não respondem?
+
+Firewalls podem bloquear pacotes ICMP TTL exceeded, alguns roteadores são configurados para não responder ao traceroute, uso de NAT ou redes privadas pode afetar a visibilidade dos hops.
+
+Isso não significa necessariamente que há um problema na rede, desde que o destino seja alcançado, os saltos intermediários não responderem não indicam falha na comunicação.
+
+Questão 6.
+
+Conexões e portas de escuta:
+
+TCP: 127.0.0.11:41675 (escuta)
+
+UDP: 127.0.0.11:50136
+
+Tabela de roteamento:
+
+Destino: default | Gateway: 172.18.0.1 | Interface: eth0
+
+Destino: 172.18.0.0 | Gateway: 0.0.0.0 | Interface: eth0
+
+Os resultados são os mesmos do comando route?
+
+Sim, a tabela de roteamento exibida pelo netstat -r é equivalente ao route -n.
+
+Há informações adicionais?
+
+Sim, o netstat -tulnp mostra detalhes sobre portas e conexões ativas que route -n não fornece.
+
+Questão 7.
+
+
+Teste de conectividade:
+
+Telnet www.ufpb.br 80:
+
+Conectado com sucesso.
+O servidor respondeu, indicando que o serviço web está ativo.
+Retornou erro HTTP 400 Bad Request (esperado para conexão telnet sem requisição HTTP).
+
+Telnet www.dce.ufpb.br 21:
+
+Falha na resolução do servidor (Name or service not known).
+Indica que o host pode estar fora do ar ou inexistente.
+
+Como diferenciar um problema de rede de um problema no serviço?
+
+"Connection refused": o servidor está acessível, mas o serviço pode estar inativo.
+"Connection timed out": pode indicar um problema de rede ou firewall bloqueando a conexão.
+"Name or service not known": pode indicar que o host não existe ou está fora do ar.
+
+Questão 8.
+
+
+Explicação sobre o MTR:
+O MTR combina as funcionalidades do ping e traceroute, monitorando a rota e latência dos pacotes em tempo real. Ele é útil para: Diagnóstico de problemas de rede, como perda de pacotes e congestionamento.
+
+Monitoramento de desempenho da conexão.
+
+Solução de problemas de conectividade.
+
+Resultados:
+
+MTR www.google.com:
+
+Primeiro salto: 172.18.0.1 (0% perda de pacotes)
+
+Segundo salto: 172.217.30.68 (3.7% perda de pacotes, latência média de 59.7ms)
+
+MTR www.ufpb.br:
+
+Primeiro salto: 172.18.0.1 (0% perda de pacotes)
+
+Segundo salto: 150.165.254.52 (7.7% perda de pacotes, latência média de 27.0ms)
+
+Interpretação:
+
+A baixa perda de pacotes (≤5%) pode indicar congestionamento momentâneo e a latência para www.ufpb.br é menor, pois o servidor está localizado mais próximo, pequenas variações na latência podem indicar ajustes dinâmicos no roteamento da rede.
+
+Como esses dados ajudam no diagnóstico?
+
+Identificam pontos de congestionamento ao longo do caminho, permitem verificar se a latência está dentro do esperado, se houver perda alta de pacotes em um salto específico, pode indicar um problema de rota ou um servidor intermediário sobrecarregado.
+
